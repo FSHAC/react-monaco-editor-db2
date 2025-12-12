@@ -1,7 +1,8 @@
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const path = require("path");
 
-// const MonacoEditorSrc = path.join(__dirname, "..", "src");
+// Path to local react-monaco-editor source
+const MonacoEditorSrc = path.join(__dirname, "..", "src");
 
 module.exports = {
   entry: "./index.js",
@@ -31,6 +32,24 @@ module.exports = {
         ],
       },
       {
+        // Handle TypeScript files from local source
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: [
+                "@babel/preset-env",
+                "@babel/preset-react",
+                "@babel/preset-typescript"
+              ],
+              plugins: ["@babel/plugin-proposal-class-properties"],
+            },
+          },
+        ],
+      },
+      {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
@@ -41,14 +60,17 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js", ".json"],
-    // Remove alias until https://github.com/microsoft/monaco-editor-webpack-plugin/issues/68 is fixed
-    // alias: { "react-monaco-editor": MonacoEditorSrc }
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
+    // Use local source for react-monaco-editor to test DB2 SQL support
+    alias: {
+      "react-monaco-editor": MonacoEditorSrc,
+      // Ensure single React instance to avoid hooks error
+      "react": path.resolve(__dirname, "node_modules/react"),
+      "react-dom": path.resolve(__dirname, "node_modules/react-dom")
+    }
   },
   plugins: [
-    new MonacoWebpackPlugin({
-      languages: ["json", "javascript", "typescript"],
-    }),
+    new MonacoWebpackPlugin(),
   ],
   devServer: { contentBase: "./" },
 };

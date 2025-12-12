@@ -1,4 +1,28 @@
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
+// Import Monaco features/contributions that aren't included by default in ESM builds
+import "monaco-editor/esm/vs/editor/contrib/suggest/browser/suggestController";
+import "monaco-editor/esm/vs/editor/contrib/hover/browser/hoverContribution";
+// Line operations: Alt+Up/Down to move lines, Shift+Alt+Up/Down to copy lines
+import "monaco-editor/esm/vs/editor/contrib/linesOperations/browser/linesOperations";
+// Word operations: Ctrl+Arrow to navigate by word, Ctrl+Backspace/Delete to delete words
+import "monaco-editor/esm/vs/editor/contrib/wordOperations/browser/wordOperations";
+// Clipboard: Ctrl+C/V/X
+import "monaco-editor/esm/vs/editor/contrib/clipboard/browser/clipboard";
+// Find: Ctrl+F, Ctrl+H
+import "monaco-editor/esm/vs/editor/contrib/find/browser/findController";
+// Multi-cursor: Ctrl+D, Alt+Click
+import "monaco-editor/esm/vs/editor/contrib/multicursor/browser/multicursor";
+// Bracket matching: Ctrl+Shift+\
+import "monaco-editor/esm/vs/editor/contrib/bracketMatching/browser/bracketMatching";
+// Comment: Ctrl+/
+import "monaco-editor/esm/vs/editor/contrib/comment/browser/comment";
+// Indentation
+import "monaco-editor/esm/vs/editor/contrib/indentation/browser/indentation";
+// Folding
+import "monaco-editor/esm/vs/editor/contrib/folding/browser/folding";
+// Context menu
+import "monaco-editor/esm/vs/editor/contrib/contextmenu/browser/contextmenu";
+
 import * as React from "react";
 import { useEffect, useMemo, useRef } from "react";
 import { MonacoEditorHandle, MonacoEditorProps } from "./types";

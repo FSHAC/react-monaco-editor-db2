@@ -16,6 +16,7 @@
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.28.5",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
     "monaco-editor-webpack-plugin": "^7.1.0",
@@ -25,6 +26,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "monaco-editor": "^0.55.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-monaco-editor": "latest"
